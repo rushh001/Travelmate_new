@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Travelmate"
         tools:targetApi="31">
         <activity
+            android:name=".Navigation_bar"
+            android:exported="false" />
+        <activity
             android:name=".SignUp"
             android:exported="false" />
         <activity

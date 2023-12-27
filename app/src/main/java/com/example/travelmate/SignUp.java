@@ -64,7 +64,7 @@ button.setOnClickListener(new View.OnClickListener() {
 });
 
 if(auth.getCurrentUser()!=null){
-    Intent intent=new Intent(SignUp.this,MainActivity.class);
+    Intent intent=new Intent(SignUp.this,Navigation_bar.class);
     startActivity(intent);
     finish();
 }
@@ -84,7 +84,7 @@ if(auth.getCurrentUser()!=null){
             try{
 
                 GoogleSignInAccount account= task.getResult(ApiException.class);
-                Toast.makeText(SignUp.this,"phase2",Toast.LENGTH_SHORT).show();
+               // Toast.makeText(SignUp.this,"phase2",Toast.LENGTH_SHORT).show();
 
                 firebaseAuth(account.getIdToken());
             }
@@ -102,7 +102,7 @@ if(auth.getCurrentUser()!=null){
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                        Toast.makeText(SignUp.this, "phase5", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(SignUp.this, "phase5", Toast.LENGTH_SHORT).show();
 
                         FirebaseUser user = auth.getCurrentUser();
                         HashMap<String, Object> map = new HashMap<>();
@@ -111,7 +111,7 @@ if(auth.getCurrentUser()!=null){
                         map.put("profile", user.getPhotoUrl().toString());
 
                         database.getReference().child("user").child(user.getUid()).setValue(map);
-                        Intent intent = new Intent(SignUp.this, MainActivity.class);
+                        Intent intent = new Intent(SignUp.this, Navigation_bar.class);
                         startActivity(intent);
                     } else {
                         Toast.makeText(SignUp.this, "Something went wrong", Toast.LENGTH_SHORT).show();
