@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:gms="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical"
+    android:id="@+id/User"
+    tools:context=".UserFragment">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:paddingLeft="15dp"
+       android:layout_marginHorizontal="60dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/ic_launcher_background"
+        android:id="@+id/profile_image"
+        />
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textAlignment="center"
+    android:text="Name"
+    android:textColor="@color/light_grey"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="10dp"
+    android:textSize="40dp"
+    />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        app:cardCornerRadius="30dp"
+        android:layout_marginHorizontal="20dp"
+        android:backgroundTint="@color/grey">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center_horizontal">
+
+            <EditText
+                android:id="@+id/full_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/rounded_2"
+                android:fontFamily="sans-serif-medium"
+                android:text="Mohd Zaid Husain"
+                android:textColor="@color/black"
+                android:textSize="30dp" />
+
+            <EditText
+                android:id="@+id/age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/full_name"
+                android:layout_marginHorizontal="80dp"
+                android:layout_marginTop="9dp"
+                android:background="@drawable/rounded_2"
+                android:fontFamily="sans-serif-light"
+                android:hint="Enter Age"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textColorHint="@color/hint_colour"
+                android:textSize="23dp" />
+
+            <TextView
+                android:id="@+id/Age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/full_name"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="9dp"
+                android:fontFamily="sans-serif-light"
+                android:text="Age:"
+                android:textColor="@color/black"
+                android:textSize="23dp" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/age"
+                android:layout_alignParentEnd="true"
+
+                android:layout_marginHorizontal="110dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="58dp"
+                android:textSize="23dp" />
+
+            <TextView
+                android:id="@+id/Gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Age"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="11dp"
+                android:fontFamily="sans-serif-light"
+                android:text="Gender:"
+                android:textColor="@color/black"
+                android:textSize="23dp" />
+
+            <TextView
+                android:id="@+id/gender_disp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Age"
+                android:layout_marginHorizontal="120dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-light"
+
+                android:textColor="@color/black"
+                android:textSize="23dp" />
+
+            <EditText
+                android:id="@+id/place_of_origin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/gender_disp"
+                android:layout_marginHorizontal="135dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/rounded_2"
+                android:fontFamily="sans-serif-light"
+                android:hint="State"
+                android:inputType="textAutoComplete"
+                android:textColor="@color/black"
+                android:textColorHint="@color/hint_colour"
+                android:textSize="23dp" />
+
+            <TextView
+                android:id="@+id/Belong_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Gender"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="13dp"
+                android:fontFamily="sans-serif-light"
+                android:text="Belong To:"
+                android:textColor="@color/black"
+                android:textSize="23dp" />
+
+            <TextView
+                android:id="@+id/where"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/place_of_origin"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_2"
+                android:fontFamily="sans-serif-medium"
+                android:text="Want to travel"
+                android:textColor="@color/black"
+                android:textSize="23dp" />
+
+            <EditText
+                android:id="@+id/from"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@id/where"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/rounded"
+                android:backgroundTint="@color/dim_grey"
+                android:drawableLeft="@drawable/outline_location_on_24"
+                android:drawablePadding="7dp"
+                android:hint="  From"
+                android:inputType="textAutoComplete"
+                android:padding="7dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/hint_colour"
+                android:textSize="23dp" />
+
+            <EditText
+                android:id="@+id/to"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@id/from"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/rounded"
+                android:backgroundTint="@color/dim_grey"
+                android:drawableLeft="@drawable/outline_location_on_24"
+                android:drawablePadding="7dp"
+                android:hint="  Destination"
+                android:inputType="textAutoComplete"
+                android:padding="7dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/hint_colour"
+                android:textSize="23dp"
+                android:visibility="visible" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/to"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="110dp"
+                android:layout_marginTop="17dp"
+                android:layout_marginBottom="5dp"
+                android:backgroundTint="@color/dim_grey"
+                android:text="Save"
+                android:textColor="@color/black"
+                android:textSize="23dp"
+                card_view:strokeColor="@color/black"
+                card_view:strokeWidth="1dp" />
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
