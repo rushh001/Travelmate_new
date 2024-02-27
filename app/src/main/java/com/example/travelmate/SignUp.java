@@ -36,13 +36,15 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthCredential;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 
 public class SignUp extends AppCompatActivity {
 Button button;
 FirebaseAuth auth;
-FirebaseDatabase database;
+FirebaseFirestore database;
 GoogleSignInClient googleSignInClient;
 int RC_SIGN_IN=20;
     @Override
@@ -50,7 +52,7 @@ int RC_SIGN_IN=20;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 auth=FirebaseAuth.getInstance();
-database=FirebaseDatabase.getInstance();
+database=FirebaseFirestore.getInstance();
 button=findViewById(R.id.SignUpbtn);
 GoogleSignInOptions gso= new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
 googleSignInClient=GoogleSignIn.getClient(this,gso);
@@ -102,19 +104,27 @@ if(auth.getCurrentUser()!=null){
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                        //Toast.makeText(SignUp.this, "phase5", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUp.this, "phase5", Toast.LENGTH_SHORT).show();
 
                         FirebaseUser user = auth.getCurrentUser();
-                        HashMap<String, Object> map = new HashMap<>();
-                        map.put("id", user.getUid());
-                        map.put("name", user.getDisplayName());
-                        map.put("profile", user.getPhotoUrl().toString());
+                        user_details userDetails=new user_details();
+                        userDetails.setUserId(user.getUid());
+                        userDetails.setUserName(user.getDisplayName());
+                        userDetails.setUserProfile(user.getPhotoUrl().toString());
+                         String id=user.getUid();
+//
+                        database.collection("user").document(id).set(userDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful())
+                                {  Intent intent = new Intent(SignUp.this, Navigation_bar.class);
+                                startActivity(intent); }
+                                else {
+                                    Toast.makeText(SignUp.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
 
-                        database.getReference().child("user").child(user.getUid()).setValue(map);
-                        Intent intent = new Intent(SignUp.this, Navigation_bar.class);
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(SignUp.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                     }
 
 

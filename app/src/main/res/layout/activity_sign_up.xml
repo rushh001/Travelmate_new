@@ -8,60 +8,62 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/android_small___4"
+    android:background="@drawable/gradient_back"
     tools:context=".SignUp">
 
 
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="320dp"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="Travelmate"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:textSize="50dp" />
 
-        app:cardCornerRadius="30dp"
-        android:background="@drawable/rounded"
-        android:backgroundTint="@color/grey">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal">
+    <de.hdodenhof.circleimageview.CircleImageView
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:text="Sign In"
-                android:layout_margin="10dp"
-                android:textColor="@color/black"
+        android:id="@+id/profile_image"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_marginHorizontal="60dp"
+        android:layout_marginVertical="50dp"
+        android:paddingLeft="15dp"
+        android:src="@drawable/travelmate1" />
 
-                android:layout_gravity="center_horizontal"
-                android:textSize="40dp"
-                />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="Let's find mates
+                          to travel with"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:textSize="30dp" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/SignUpbtn"
-                android:layout_width="260dp"
-                android:layout_height="60dp"
-                android:text="Sign In"
-                android:textSize="20dp"
-                app:strokeColor="@color/black"
-                app:strokeWidth="2dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="30dp"
-                android:drawableLeft="@drawable/google__1_"
-                android:backgroundTint="@color/light_grey"
-                android:textColor="@color/black">
-
-
-
-
-            </com.google.android.material.button.MaterialButton>
-
-        </LinearLayout>
-
-
-    </androidx.cardview.widget.CardView>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/SignUpbtn"
+        android:layout_width="280dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="70dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="10dp"
+        android:backgroundTint="#2F7694"
+        android:drawableLeft="@drawable/google__1_"
+        android:text="Sign In"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:cornerRadius="23dp"
+        android:shadowColor="@color/light_grey"
+       >
 
 
+    </com.google.android.material.button.MaterialButton>
 
 </LinearLayout>
+
+
+
+
+
+
