@@ -9,12 +9,13 @@
 
     <style name="Theme.Travelmate" parent="Base.Theme.Travelmate">
         <item name="colorPrimaryDark">#4093CE</item>
-        <item name="android:statusBarColor">#4093CE</item>
+        <item name="android:statusBarColor">@color/transparent</item>
 
     </style>
 
     <style name="SwitchCompatTheme" >
         <item name="colorControlActivated">@color/blue</item>
+        <item name="colorAccent">@color/light_grey</item>
     </style>
     <style name="picker_theme" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">@color/blue</item>

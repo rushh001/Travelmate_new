@@ -35,36 +35,41 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthCredential;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.FirebaseDatabase;
+//import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 
 public class SignUp extends AppCompatActivity {
-Button button;
-FirebaseAuth auth;
-FirebaseFirestore database;
-GoogleSignInClient googleSignInClient;
-int RC_SIGN_IN=20;
+    Button button;
+    FirebaseAuth auth;
+    FirebaseFirestore database;
+    GoogleSignInClient googleSignInClient;
+    int RC_SIGN_IN = 20;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-auth=FirebaseAuth.getInstance();
-database=FirebaseFirestore.getInstance();
-button=findViewById(R.id.SignUpbtn);
-GoogleSignInOptions gso= new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
-googleSignInClient=GoogleSignIn.getClient(this,gso);
-button.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        googleSignIn();
-    }
+
+        auth = FirebaseAuth.getInstance();
+        database = FirebaseFirestore.getInstance();
+        button = findViewById(R.id.SignUpbtn);
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
+        googleSignInClient = GoogleSignIn.getClient(this, gso);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                googleSignIn();
+            }
 
 
-});
+        });
 
+
+//
 if(auth.getCurrentUser()!=null){
     Intent intent=new Intent(SignUp.this,Navigation_bar.class);
     startActivity(intent);
@@ -75,6 +80,7 @@ if(auth.getCurrentUser()!=null){
     private void googleSignIn() {
         Intent intent=googleSignInClient.getSignInIntent();
         startActivityForResult(intent,RC_SIGN_IN);
+        //Toast.makeText(SignUp.this,"phase1",Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -86,7 +92,7 @@ if(auth.getCurrentUser()!=null){
             try{
 
                 GoogleSignInAccount account= task.getResult(ApiException.class);
-               // Toast.makeText(SignUp.this,"phase2",Toast.LENGTH_SHORT).show();
+              // Toast.makeText(SignUp.this,"phase2",Toast.LENGTH_SHORT).show();
 
                 firebaseAuth(account.getIdToken());
             }
@@ -97,25 +103,28 @@ if(auth.getCurrentUser()!=null){
             }
         }
     }
-
+//
     private void firebaseAuth(String idToken) {
+        //Toast.makeText(SignUp.this,idToken,Toast.LENGTH_SHORT).show();
         AuthCredential credential= GoogleAuthProvider.getCredential(idToken,null);
-        auth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        auth.signInWithCredential(credential).addOnCompleteListener(SignUp.this,new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                        Toast.makeText(SignUp.this, "phase5", Toast.LENGTH_SHORT).show();
 
+                   // Toast.makeText(SignUp.this,"phase3",Toast.LENGTH_SHORT).show();
                         FirebaseUser user = auth.getCurrentUser();
                         user_details userDetails=new user_details();
                         userDetails.setUserId(user.getUid());
                         userDetails.setUserName(user.getDisplayName());
                         userDetails.setUserProfile(user.getPhotoUrl().toString());
                          String id=user.getUid();
-//
+
+                         // Toast.makeText(SignUp.this,"phase4",Toast.LENGTH_SHORT).show();
                         database.collection("user").document(id).set(userDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
+                                //Toast.makeText(SignUp.this,"phase5",Toast.LENGTH_SHORT).show();
                                 if(task.isSuccessful())
                                 {  Intent intent = new Intent(SignUp.this, Navigation_bar.class);
                                 startActivity(intent); }
@@ -125,11 +134,15 @@ if(auth.getCurrentUser()!=null){
                             }
                         });
 
-                    }
+                   }
+
+               else {
+                    Toast.makeText(SignUp.this,"failed",Toast.LENGTH_SHORT).show();
+                }
 
 
             }
         });
     }
-}
 
+}

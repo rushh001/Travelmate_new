@@ -8,26 +8,19 @@
     android:layout_height="match_parent"
     android:id="@+id/Search"
     android:orientation="vertical"
-    android:background="@drawable/gradient_back"
+    android:background="@drawable/search_back1"
     tools:context=".SearchFragment">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-android:layout_marginTop="20dp"
-    android:layout_gravity="center"
-        app:cardCornerRadius="20dp"
-        android:outlineAmbientShadowColor="@color/light_grey"
-        android:outlineSpotShadowColor="@color/black"
-        android:layout_marginHorizontal="20dp"
-        android:background="@drawable/cardback"
-        android:elevation="10dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-android:background="@color/white"
-            android:layout_gravity="center_horizontal">
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+
+android:background="@color/transparent"
+            android:layout_gravity="top">
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -36,15 +29,15 @@ android:background="@color/white"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
-                card_view:boxBackgroundColor="@color/light_blue"
-                card_view:endIconTint="@color/blue"
-                card_view:boxStrokeColor="@color/blue"
-                card_view:hintTextColor="@color/blue"
+                card_view:boxBackgroundColor="@color/white"
+                card_view:endIconTint="@color/black"
+                card_view:boxStrokeColor="@color/black"
+                card_view:hintTextColor="@color/black"
                 android:textColorHint="@color/hint_colour"
-                card_view:boxCornerRadiusBottomEnd="10dp"
-                card_view:boxCornerRadiusBottomStart="10dp"
-                card_view:boxCornerRadiusTopEnd="10dp"
-                card_view:boxCornerRadiusTopStart="10dp"
+                card_view:boxCornerRadiusBottomEnd="30dp"
+                card_view:boxCornerRadiusBottomStart="30dp"
+                card_view:boxCornerRadiusTopEnd="30dp"
+                card_view:boxCornerRadiusTopStart="30dp"
 
 
 
@@ -53,7 +46,7 @@ android:background="@color/white"
                 <AutoCompleteTextView
                     android:id="@+id/from"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
                     android:textColor="@color/black"
                     android:inputType="none"
@@ -74,16 +67,16 @@ android:background="@color/white"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
-                card_view:boxBackgroundColor="@color/light_blue"
-                card_view:endIconTint="@color/blue"
-                card_view:boxStrokeColor="@color/blue"
-                card_view:hintTextColor="@color/blue"
+                card_view:boxBackgroundColor="@color/white"
+                card_view:endIconTint="@color/black"
+                card_view:boxStrokeColor="@color/black"
+                card_view:hintTextColor="@color/black"
                 android:textColorHint="@color/hint_colour"
 
-                card_view:boxCornerRadiusBottomEnd="10dp"
-                card_view:boxCornerRadiusBottomStart="10dp"
-                card_view:boxCornerRadiusTopEnd="10dp"
-                card_view:boxCornerRadiusTopStart="10dp"
+                card_view:boxCornerRadiusBottomEnd="30dp"
+                card_view:boxCornerRadiusBottomStart="30dp"
+                card_view:boxCornerRadiusTopEnd="30dp"
+                card_view:boxCornerRadiusTopStart="30dp"
 
 
 
@@ -92,7 +85,7 @@ android:background="@color/white"
                 <AutoCompleteTextView
                     android:id="@+id/to"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:textColor="@color/black"
                     android:inputType="none"
                     android:hint="Destination"
@@ -107,12 +100,14 @@ android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_marginHorizontal="20dp">
+    android:layout_marginHorizontal="20dp"
+
+    >
 
    <TextView
        android:id="@+id/timeslot"
        android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
+       android:layout_height="50dp"
        android:hint="Time"
        android:textColor="@color/black"
        android:gravity="center"
@@ -130,7 +125,7 @@ android:background="@color/white"
     <TextView
         android:id="@+id/dateslot"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:hint="Date"
         android:textColorHint="@color/hint_colour"
         android:textSize="20dp"
@@ -164,7 +159,46 @@ android:background="@color/white"
                 app:cornerRadius="15dp"
                />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/sheet"
+    card_view:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    android:background="@drawable/rounded"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_keyboard_arrow_up_24"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="fitCenter"
+        />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/matesRecyclerview"
+           tools:listitem="@layout/user_view_adapter"
+
+            />
+
+
+
+
+
+    </LinearLayout>
+</FrameLayout>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
 </LinearLayout>

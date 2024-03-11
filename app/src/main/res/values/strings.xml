@@ -1,6 +1,25 @@
 <resources>
     <string name="app_name">Travelmate</string>
-    <string name="default_web_client_id">318303031178-tvj9eadkt7otns7nk97agv6gmoa6bpul.apps.googleusercontent.com</string>
+    <string name="default_web_client_id">1019305196952-0hnnap118samj69bs01e8itpph8n7fss.apps.googleusercontent.com</string>
+    <string name="About">Travelmate helps you find new
+        \n friends to
+        travel with and \n explore exciting
+         places together.
+        \n
+        "TravelMates" is all about making \n"  "group
+         travel easy and fun.
+        </string>
+    <string name="use">.Enter your Details in profile.
+        \n.Choose From and Destination.
+        \n.Click Search to find mates.
+        \n.Click Connect to chat with mates.
+        \n "      "Enjoy Your Journey (^_^)
+
+
+
+
+
+    </string>
     <string-array name="state">
         <item>Andaman and Nicobar Islands</item>
         <item>Andhra Pradesh</item>

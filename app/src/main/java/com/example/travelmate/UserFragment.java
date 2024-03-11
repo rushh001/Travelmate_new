@@ -5,6 +5,7 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.google.type.Color.ALPHA_FIELD_NUMBER;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -25,6 +26,10 @@ import android.widget.Toast;
 
 import com.example.travelmate.databinding.ActivityMainBinding;
 import com.example.travelmate.databinding.FragmentUserBinding;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -39,6 +44,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Transaction;
+import com.google.rpc.Status;
 import com.google.rpc.context.AttributeContext;
 import com.google.type.Color;
 import com.squareup.picasso.Picasso;
@@ -47,6 +53,8 @@ import java.util.Arrays;
 
 public class UserFragment extends Fragment {
 FragmentUserBinding binding;
+GoogleSignInClient googleSignInClient;
+    FirebaseAuth auth;
 
 String yr="";
 FirebaseFirestore firestore=FirebaseFirestore.getInstance();
@@ -66,13 +74,32 @@ FirebaseFirestore firestore=FirebaseFirestore.getInstance();
 
 //        Toast.makeText(getActivity(), "Something went wrong0", Toast.LENGTH_SHORT).show();
 
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
+        googleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
+        auth = FirebaseAuth.getInstance();
+         binding.signout.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                     if (auth.getCurrentUser() != null)
+                         auth.signOut();
+                     Intent intent = new Intent(getActivity(), SignUp.class);
+                     startActivity(intent);
+                 getActivity().finish();
+
+                 }
+         });
+
+
+
+
 
         SharedPreferences sharedPreferences=getContext().getSharedPreferences(
                 "save", MODE_PRIVATE);
 
         binding.gender.setChecked(sharedPreferences.getBoolean("value",true));
 
-        if( binding.gender.isChecked()==true)
+        if(binding.gender.isChecked())
             binding.genderDisp.setText("Female");
         else
             binding.genderDisp.setText("Male");
@@ -81,7 +108,7 @@ FirebaseFirestore firestore=FirebaseFirestore.getInstance();
         binding.gender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if( binding.gender.isChecked()==true) {
+                if(binding.gender.isChecked()) {
                     binding.genderDisp.setText("Female");
                     SharedPreferences.Editor editor=view.getContext().getSharedPreferences("save",MODE_PRIVATE).edit();
                     editor.putBoolean("value",true);
@@ -231,6 +258,16 @@ FirebaseFirestore firestore=FirebaseFirestore.getInstance();
 
 
     }
+
+//    private void signout() {
+//        googleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//                 startActivity(new Intent(getActivity(),SignUp.class));
+//
+//            }
+//        });
+//    }
 
 }
 
