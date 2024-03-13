@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.FrameLayout;
@@ -20,23 +21,26 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.travelmate.databinding.FragmentSearchBinding;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class SearchFragment extends Fragment {
 
     FragmentSearchBinding binding;
     ArrayList<user_details> userDetails;
-    mates_list matesList;
+    mates_list adapter;
     FirebaseFirestore db;
-    user_details user_details;
+
 
     public SearchFragment() {
     }
@@ -45,38 +49,16 @@ public class SearchFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         //Toast.makeText(getActivity(), " error1", Toast.LENGTH_SHORT).show();
-
-        binding.matesRecyclerview.setHasFixedSize(true);
-        db=FirebaseFirestore.getInstance();
-
-        //Toast.makeText(getActivity(), " error1", Toast.LENGTH_SHORT).show();
-        userDetails=new ArrayList<>();
-
-       // Toast.makeText(getActivity(), " error2", Toast.LENGTH_SHORT).show();
-        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
-        binding.matesRecyclerview.setLayoutManager(layoutManager);
-
-       // Toast.makeText(getActivity(), " error3", Toast.LENGTH_SHORT).show();
-        matesList=new mates_list((FragmentActivity) getContext(),userDetails);
-        binding.matesRecyclerview.setAdapter(matesList);
-        EventChangeListner();
-        //Toast.makeText(getActivity(), " error2", Toast.LENGTH_SHORT).show();
-
-
         return binding.getRoot();
-
-
-
-
 
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-        BottomSheetBehavior<FrameLayout> behavior = BottomSheetBehavior.from(binding.sheet);
-        behavior.setPeekHeight(100);
-        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+            BottomSheetBehavior<FrameLayout> behavior = BottomSheetBehavior.from(binding.sheet);
+            behavior.setPeekHeight(300);
+            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
 
 
@@ -110,47 +92,43 @@ public class SearchFragment extends Fragment {
              TimePickerDialog dialog_box =new TimePickerDialog(getContext(),R.style.picker_theme ,new TimePickerDialog.OnTimeSetListener() {
                  @Override
                  public void onTimeSet(TimePicker view, int hour, int minute) {
-binding.timeslot.setText(String.valueOf(hour)+":"+String.valueOf(minute));
+             binding.timeslot.setText(String.valueOf(hour)+":"+String.valueOf(minute));
                  }
              },15,00,false);
              dialog_box.show();
          }
      });
 
+        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
+        binding.matesRecyclerview.setLayoutManager(layoutManager);
+
+        Toast.makeText(getActivity(), " error1", Toast.LENGTH_SHORT).show();
+         userDetails=new ArrayList<>();
+         adapter=new mates_list(userDetails);
+         binding.matesRecyclerview.setAdapter(adapter);
+
+         Toast.makeText(getActivity(), " error2", Toast.LENGTH_SHORT).show();
+        db=FirebaseFirestore.getInstance();
+       db.collection("user").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+           @Override
+           public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+               List<DocumentSnapshot> list=queryDocumentSnapshots.getDocuments();
+               Toast.makeText(getActivity(), " error3", Toast.LENGTH_SHORT).show();
+               for (DocumentSnapshot d:list)
+               {Toast.makeText(getActivity(), " error4", Toast.LENGTH_SHORT).show();
+                  user_details obj=d.toObject(user_details.class);
+                  userDetails.add(obj);
+
+               }
+               adapter.notifyDataSetChanged();
+
+           }
+       });
+        //Toast.makeText(getActivity(), " error2", Toast.LENGTH_SHORT).show();
 
 
 
     }
 
-    private void EventChangeListner() {
-        db.collection("user").addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                if (error!= null)
-                {
-                    Toast.makeText(getActivity(), "Firebase error", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Toast.makeText(getActivity(), " error3", Toast.LENGTH_SHORT).show();
 
-                for (DocumentChange dc:value.getDocumentChanges()){
-                    Toast.makeText(getActivity(), " error4", Toast.LENGTH_SHORT).show();
-
-                    if (dc.getType()== DocumentChange.Type.ADDED){
-                        userDetails.add(dc.getDocument().toObject(user_details.class));
-                        Toast.makeText(getActivity(), " error5", Toast.LENGTH_SHORT).show();
-                       // Toast.makeText(getActivity(), " error6", Toast.LENGTH_SHORT).show();
-
-                      // userDetails.add(user_details);
-
-                        matesList.notifyDataSetChanged();
-                        Toast.makeText(getActivity(), " error8", Toast.LENGTH_SHORT).show();
-
-                    }
-
-                }
-
-            }
-        });
-    }
 }

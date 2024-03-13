@@ -159,28 +159,37 @@ android:background="@color/transparent"
                 app:cornerRadius="15dp"
                />
         </LinearLayout>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-   >
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/sheet"
-    card_view:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    android:background="@drawable/rounded"
-    >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-    <ImageView
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/baseline_keyboard_arrow_up_24"
-        android:layout_gravity="center_horizontal"
-        android:scaleType="fitCenter"
-        />
+
+
+     <FrameLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:id="@+id/sheet"
+         card_view:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+         android:background="@drawable/rounded"
+         >
+
+         <ImageView
+             android:layout_width="70dp"
+             android:layout_height="wrap_content"
+             android:src="@drawable/baseline_keyboard_arrow_up_24"
+             android:layout_gravity="center_horizontal"
+             android:scaleType="fitCenter"
+             />
+
+
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -191,14 +200,17 @@ android:background="@color/transparent"
 
 
 
-
+</androidx.appcompat.widget.LinearLayoutCompat>
+     </FrameLayout>
 
     </LinearLayout>
-</FrameLayout>
 
 
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+
 
 
 </LinearLayout>
