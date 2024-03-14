@@ -55,10 +55,10 @@ public class SearchFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-            getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-            BottomSheetBehavior<FrameLayout> behavior = BottomSheetBehavior.from(binding.sheet);
-            behavior.setPeekHeight(300);
-            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+           // getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+//            BottomSheetBehavior<FrameLayout> behavior = BottomSheetBehavior.from(binding.sheet);
+//            behavior.setPeekHeight(300);
+//            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
 
 
@@ -102,20 +102,20 @@ public class SearchFragment extends Fragment {
         LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
         binding.matesRecyclerview.setLayoutManager(layoutManager);
 
-        Toast.makeText(getActivity(), " error1", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getActivity(), " error1", Toast.LENGTH_SHORT).show();
          userDetails=new ArrayList<>();
          adapter=new mates_list(userDetails);
          binding.matesRecyclerview.setAdapter(adapter);
 
-         Toast.makeText(getActivity(), " error2", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(getActivity(), " error2", Toast.LENGTH_SHORT).show();
         db=FirebaseFirestore.getInstance();
        db.collection("user").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
            @Override
            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                List<DocumentSnapshot> list=queryDocumentSnapshots.getDocuments();
-               Toast.makeText(getActivity(), " error3", Toast.LENGTH_SHORT).show();
+               //Toast.makeText(getActivity(), " error3", Toast.LENGTH_SHORT).show();
                for (DocumentSnapshot d:list)
-               {Toast.makeText(getActivity(), " error4", Toast.LENGTH_SHORT).show();
+               {//Toast.makeText(getActivity(), " error4", Toast.LENGTH_SHORT).show();
                   user_details obj=d.toObject(user_details.class);
                   userDetails.add(obj);
 

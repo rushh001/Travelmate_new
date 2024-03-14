@@ -41,6 +41,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Transaction;
@@ -136,6 +137,73 @@ FirebaseFirestore firestore=FirebaseFirestore.getInstance();
         FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
         String id= user.getUid();
         DocumentReference documentReference=firestore.collection("user").document(id);
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if(documentSnapshot.exists())
+                {
+                    String url=documentSnapshot.getString("userProfile");
+                    Picasso.get().load(url).into(binding.profileImage);
+
+                    binding.fullName.setText(documentSnapshot.getString("userName"));
+                 // Toast.makeText(getActivity(), "Error2", Toast.LENGTH_SHORT).show();
+
+                    binding.name.setText("@"+documentSnapshot.getString("userName").substring(0,binding.fullName.getText().toString().indexOf(" ")));
+
+                    if (!documentSnapshot.getString("userAge").equals(" "))
+                       // Toast.makeText(getActivity(), "Error1", Toast.LENGTH_SHORT).show();
+                        binding.age.setText(documentSnapshot.getString("userAge"));
+
+                    if (!documentSnapshot.getString("userGender").equals(" "))
+                    binding.genderDisp.setText(documentSnapshot.getString("userGender"));
+                    //Toast.makeText(getActivity(), "Error3", Toast.LENGTH_SHORT).show();
+
+
+                    if (!documentSnapshot.getString("userYear").equals(" ")) {
+                        String yr_retrive = documentSnapshot.getString("userYear");
+                        if (yr_retrive.equals("1st yr"))
+                        {
+                            binding.firstyr.setBackgroundColor(getResources().getColor(R.color.light_blue));
+                           binding.firstyr.setTextColor(getResources().getColor(R.color.black));
+                        }
+                        else if (yr_retrive.equals("2nd yr")) {
+                            binding.secondyr.setBackgroundColor(getResources().getColor(R.color.light_blue));
+                            binding.secondyr.setTextColor(getResources().getColor(R.color.black));
+
+                        }
+                        else if (yr_retrive.equals("3rd yr")) {
+                            binding.thirdyr.setBackgroundColor(getResources().getColor(R.color.light_blue));
+                            binding.thirdyr.setTextColor(getResources().getColor(R.color.black));
+
+                        }
+                        else
+                        {
+                            binding.fourthyr.setBackgroundColor(getResources().getColor(R.color.light_blue));
+                            binding.fourthyr.setTextColor(getResources().getColor(R.color.black));
+
+                        }
+
+                    }
+
+                    if (!documentSnapshot.getString("userOrigin").equals(" "))
+                        binding.placeOfOrigin.setText(documentSnapshot.getString("userOrigin"));
+                    //Toast.makeText(getActivity(), "Error4", Toast.LENGTH_SHORT).show();
+
+
+
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
+
         binding.save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,6 +213,8 @@ FirebaseFirestore firestore=FirebaseFirestore.getInstance();
 
               else if(binding.genderDisp.getText().toString().isEmpty())
                     Toast.makeText(getActivity(), "Select Gender", Toast.LENGTH_SHORT).show();
+              else if(yr.isEmpty())
+                    Toast.makeText(getActivity(), "Select Year", Toast.LENGTH_SHORT).show();
                else if(binding.placeOfOrigin.getText().toString().isEmpty())
                     Toast.makeText(getActivity(), "Select State", Toast.LENGTH_SHORT).show();
                 else {
@@ -157,6 +227,7 @@ FirebaseFirestore firestore=FirebaseFirestore.getInstance();
                                     transaction.update(documentReference, "userAge", binding.age.getText().toString());
                                     transaction.update(documentReference, "userGender", binding.genderDisp.getText().toString());
                                     transaction.update(documentReference, "userOrigin", binding.placeOfOrigin.getText().toString());
+                                    transaction.update(documentReference, "userYear", yr);
 
                                     // Success
                                     return null;

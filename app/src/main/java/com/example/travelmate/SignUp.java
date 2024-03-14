@@ -118,6 +118,15 @@ if(auth.getCurrentUser()!=null){
                         userDetails.setUserId(user.getUid());
                         userDetails.setUserName(user.getDisplayName());
                         userDetails.setUserProfile(user.getPhotoUrl().toString());
+                        userDetails.setUserEmail(user.getEmail().toString());
+                        userDetails.setUserDestination(" ");
+                        userDetails.setUserSource(" ");
+                        userDetails.setUserOrigin(" ");
+                        userDetails.setUserGender(" ");
+                        userDetails.setUserAge(" ");
+                        userDetails.setUserYear(" ");
+                        userDetails.setUserTime(" ");
+                        userDetails.setUserDate(" ");
                          String id=user.getUid();
 
                          // Toast.makeText(SignUp.this,"phase4",Toast.LENGTH_SHORT).show();

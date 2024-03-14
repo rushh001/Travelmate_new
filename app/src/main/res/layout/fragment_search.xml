@@ -164,7 +164,7 @@ android:background="@color/transparent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
+<!--
 
      <FrameLayout
          android:layout_width="match_parent"
@@ -181,7 +181,7 @@ android:background="@color/transparent"
              android:layout_gravity="center_horizontal"
              android:scaleType="fitCenter"
              />
-
+-->
 
 <androidx.appcompat.widget.LinearLayoutCompat
     android:layout_width="match_parent"
@@ -194,15 +194,16 @@ android:background="@color/transparent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/matesRecyclerview"
-           tools:listitem="@layout/user_view_adapter"
+            android:layout_marginTop="5dp"
+
 
             />
 
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>
-     </FrameLayout>
-
+    <!-- </FrameLayout>
+-->
     </LinearLayout>
 
 

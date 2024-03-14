@@ -32,7 +32,7 @@
 
         android:id="@+id/profile_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="110dp"
         android:src="@drawable/ic_launcher_background" />
 
     <EditText
