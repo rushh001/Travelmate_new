@@ -155,7 +155,7 @@ FirebaseFirestore firestore=FirebaseFirestore.getInstance();
                         binding.age.setText(documentSnapshot.getString("userAge"));
 
                     if (!documentSnapshot.getString("userGender").equals(" "))
-                    binding.genderDisp.setText(documentSnapshot.getString("userGender"));
+                    {binding.genderDisp.setText(documentSnapshot.getString("userGender"));}
                     //Toast.makeText(getActivity(), "Error3", Toast.LENGTH_SHORT).show();
 
 
