@@ -21,7 +21,9 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.travelmate.databinding.FragmentSearchBinding;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -132,6 +134,10 @@ public class SearchFragment extends Fragment {
            }
        });
         //Toast.makeText(getActivity(), " error2", Toast.LENGTH_SHORT).show();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
+        googleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
+        auth = FirebaseAuth.getInstance();
 
         FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
         String id= user.getUid();
@@ -190,6 +196,28 @@ public class SearchFragment extends Fragment {
 
 
 
+            }
+        });
+
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists())
+                {
+                    if (!documentSnapshot.getString("userSource").equals(" "))
+                    binding.from.setText(documentSnapshot.getString("userSource"));
+                    if (!documentSnapshot.getString("userDestination").equals(" "))
+                    binding.to.setText(documentSnapshot.getString("userDestination"));
+                    if (!documentSnapshot.getString("userDate").equals(" "))
+                    binding.dateslot.setText(documentSnapshot.getString("userDate"));
+                    if (!documentSnapshot.getString("userTime").equals(" "))
+                    binding.timeslot.setText(documentSnapshot.getString("userTime"));
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
             }
         });
 
