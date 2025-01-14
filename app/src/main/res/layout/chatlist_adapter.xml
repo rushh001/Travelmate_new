@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="10dp"
+    android:id="@+id/chat_card"
+    android:backgroundTint="@color/white"
+    android:layout_margin="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <de.hdodenhof.circleimageview.CircleImageView
+
+            android:id="@+id/ad_profile_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:src="@drawable/ic_launcher_background" />
+
+                <TextView
+                    android:id="@+id/ad_full_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mohd Zaid Husain"
+                    android:maxLines="2"
+                    android:maxWidth="160dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="20dp"
+                    android:inputType="none"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/roboto_bold"
+                    android:padding="5dp"
+                    android:textSize="16dp"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

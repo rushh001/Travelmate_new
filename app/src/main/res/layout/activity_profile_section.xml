@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".usersection.ProfileSection"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@color/white">
+
+    <!-- User Name -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="User Name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:boxStrokeColor="@color/black">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/userName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hint_colour"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Phone Number -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Phone Number"
+        android:layout_marginTop="15dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:boxStrokeColor="@color/black">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hint_colour"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Age"
+        android:layout_marginTop="15dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:boxStrokeColor="@color/black">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/userAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hint_colour"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Academic Year Selection -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Academic Year"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_bold"/>
+
+    <RadioGroup
+        android:id="@+id/yearGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <RadioButton
+            android:id="@+id/year1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1st"
+            android:textColor="@color/black"
+            android:buttonTint="@color/blue"
+
+            />
+
+        <RadioButton
+            android:id="@+id/year2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2nd"
+            android:textColor="@color/black"
+            android:buttonTint="@color/blue"
+
+            />
+
+        <RadioButton
+            android:id="@+id/year3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3rd"
+            android:textColor="@color/black"
+            android:buttonTint="@color/blue"
+
+            />
+
+        <RadioButton
+            android:id="@+id/year4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4th"
+            android:textColor="@color/black"
+            android:buttonTint="@color/blue"
+            />
+    </RadioGroup>
+
+    <!-- Gender Selection -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gender"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_bold"
+
+        />
+
+    <RadioGroup
+        android:id="@+id/genderGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <RadioButton
+            android:id="@+id/genderMale"
+            android:outlineSpotShadowColor="@color/blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            android:textColor="@color/black"
+            android:buttonTint="@color/blue"
+            />
+
+        <RadioButton
+            android:id="@+id/genderFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female"
+            android:textColor="@color/black"
+            android:buttonTint="@color/blue"
+            />
+    </RadioGroup>
+
+    <!-- State Selection -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Place of origin"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_bold"/>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="35dp"
+        android:layout_marginTop="20dp"
+        card_view:boxBackgroundColor="@color/white"
+        card_view:endIconTint="@color/black"
+        card_view:boxStrokeColor="@color/black"
+        card_view:hintTextColor="@color/black"
+        android:textColorHint="@color/hint_colour"
+        card_view:boxCornerRadiusBottomEnd="20dp"
+        card_view:boxCornerRadiusBottomStart="20dp"
+        card_view:boxCornerRadiusTopEnd="20dp"
+        card_view:boxCornerRadiusTopStart="20dp">
+
+        <AutoCompleteTextView
+            android:id="@+id/placeOfOrigin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:hint="State/UT"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-medium"
+            android:dropDownHeight="300dp"
+           android:maxHeight="300dp"
+           android:popupBackground="@android:color/white" />  <!-- Add popup background for dropdown -->
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/blue"
+        android:layout_marginTop="30dp"
+        android:padding="15dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto_bold"/>
+
+</LinearLayout>

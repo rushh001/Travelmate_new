@@ -14,14 +14,11 @@
         \n.Click Search to find mates.
         \n.Click Connect to chat with mates.
         \n "      "Enjoy Your Journey (^_^)
-
-
-
-
-
     </string>
-    <string-array name="state">
-        <item>Andaman and Nicobar Islands</item>
+
+
+
+    <string-array name="indian_states">
         <item>Andhra Pradesh</item>
         <item>Arunachal Pradesh</item>
         <item>Assam</item>
@@ -58,6 +55,7 @@
         <item>Uttar Pradesh</item>
         <item>West Bengal</item>
     </string-array>
+
     <string-array name="places">
         <item>VIT Chennai</item>
         <item>Tambram</item>
@@ -90,4 +88,5 @@
         <item>AM</item>
         <item>PM</item>
     </string-array>
+    <string name="title_activity_maps_sos">MapsActivitySos</string>
 </resources>

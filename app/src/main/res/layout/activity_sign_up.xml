@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@drawable/signin_back"
-    tools:context=".SignUp">
+    tools:context=".homesection.SignUp">
 
 
     <TextView

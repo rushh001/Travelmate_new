@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+tools:context=".usersection.ProctorSection"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:padding="20dp"
+android:background="@color/white">
+
+<!-- Proctor Name -->
+<com.google.android.material.textfield.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Proctor Name"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    app:boxStrokeColor="@color/black">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/proctorName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textColorHint="@color/hint_colour"/>
+</com.google.android.material.textfield.TextInputLayout>
+
+<!-- Phone Number -->
+<com.google.android.material.textfield.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Phone Number"
+    android:layout_marginTop="15dp"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    app:boxStrokeColor="@color/black">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/proctorPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:textColor="@color/black"
+        android:textColorHint="@color/hint_colour"/>
+</com.google.android.material.textfield.TextInputLayout>
+
+<!-- Email ID -->
+<com.google.android.material.textfield.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Email ID"
+    android:layout_marginTop="15dp"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    app:boxStrokeColor="@color/black"
+    >
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/proctorEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/black"
+        android:textColorHint="@color/hint_colour"/>
+</com.google.android.material.textfield.TextInputLayout>
+
+<Button
+    android:id="@+id/saveButton"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Save"
+    android:textColor="@android:color/white"
+    android:backgroundTint="@color/blue"
+    android:layout_marginTop="30dp"
+    android:padding="15dp"
+    android:textSize="16sp"
+    android:fontFamily="@font/roboto_bold"/>
+</LinearLayout>

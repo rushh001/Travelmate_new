@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:id="@+id/main_layout"
     android:background="@color/white"
-    tools:context=".Navigation_bar">
+    tools:context=".homesection.Navigation_bar">
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"

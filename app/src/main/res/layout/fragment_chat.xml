@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:id="@+id/Chat"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_back"
-    tools:context=".ChatFragment">
+    tools:context=".chatsection.ChatFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Chats"
-        android:textSize="40dp"
-        android:gravity="center"
-        android:layout_marginTop="300dp"
-        android:textColor="@color/grey"/>
+   <androidx.recyclerview.widget.RecyclerView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/chatlistrv"
+       android:layout_marginTop="5dp"
 
-</RelativeLayout>
+       />
+</LinearLayout>
