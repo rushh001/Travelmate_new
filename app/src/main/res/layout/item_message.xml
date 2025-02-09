@@ -1,15 +1,66 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+
+    <!-- item_message.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
     android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:padding="16dp"
+android:orientation="horizontal">
+
+<de.hdodenhof.circleimageview.CircleImageView
+    android:id="@+id/ad_profile_image"
+    android:layout_width="48dp"
+    android:layout_height="48dp"
+    android:layout_gravity="center"
+    android:src="@drawable/ic_launcher_background"/>
+
+<LinearLayout
+    android:layout_width="0dp"
+    android:layout_weight="1"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="8dp">
+    android:orientation="vertical"
+    android:layout_marginStart="16dp">
 
     <TextView
-        android:id="@+id/messageTextView"
+        android:id="@+id/ad_full_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:textColor="#FFFFFF"
+        android:maxLines="2"
+        android:text="Mohd Zaid Husain"
+        android:maxWidth="160dp"
+        android:textStyle="bold"
         android:textSize="16sp"
-        android:background="@drawable/message_bubble" /> <!-- Placeholder, set dynamically -->
+        android:inputType="none"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Tap to chat"/>
+</LinearLayout>
+
+<!--<LinearLayout-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:orientation="vertical"-->
+<!--    android:gravity="end">-->
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="10 min"/>-->
+
+<!--    <TextView-->
+<!--        android:layout_width="24dp"-->
+<!--        android:layout_height="24dp"-->
+<!--        android:background="@drawable/circle_badge"-->
+<!--        android:text="2"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_marginTop="4dp"/>-->
+<!--</LinearLayout>-->
 </LinearLayout>

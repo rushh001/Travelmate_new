@@ -16,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import com.example.travelmate.R;
 import com.example.travelmate.databinding.ActivitySosSectionBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -36,6 +38,9 @@ public class SosSection extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySosSectionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.white));
+//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 

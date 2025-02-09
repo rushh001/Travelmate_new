@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.travelmate.R;
@@ -51,24 +52,17 @@ public class UserFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 //        Toast.makeText(getActivity(), "Something went wrong0", Toast.LENGTH_SHORT).show();
+        requireActivity().getWindow().setStatusBarColor(ContextCompat.getColor(getContext(), R.color.white));
+        requireActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
         googleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
         auth = FirebaseAuth.getInstance();
-        binding.signout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (auth.getCurrentUser() != null)
-                    auth.signOut();
+        binding.signout.setOnClickListener(v -> signOutAndRevokeAccess());
 
 
-                Intent intent = new Intent(getActivity(), SignUp.class);
-                startActivity(intent);
-                getActivity().finish();
-
-            }
-        });
 
 
 
@@ -439,6 +433,23 @@ public class UserFragment extends Fragment {
 
 
     }
+
+    private void signOutAndRevokeAccess() {
+        // Sign out from Firebase Authentication
+        FirebaseAuth.getInstance().signOut();
+
+        // Sign out from Google Sign-In
+        googleSignInClient.signOut().addOnCompleteListener(getActivity(), task -> {
+            // Optionally, revoke access to remove the user's permissions
+            googleSignInClient.revokeAccess().addOnCompleteListener(getActivity(), revokeTask -> {
+                // After successful sign-out and revocation, navigate to the login/signup screen
+                Intent intent = new Intent(getActivity(), SignUp.class);
+                startActivity(intent);
+                getActivity().finish(); // Close the current activity so user can't return to the signed-in state
+            });
+        });
+    }
+
 
 //    private void signout() {
 //        googleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {

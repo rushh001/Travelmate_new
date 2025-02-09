@@ -2,24 +2,32 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Travelmate" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <item name="colorPrimaryDark">@color/blue</item>
+        <item name="colorPrimaryDark">@color/purple</item>
         <item name="colorOnPrimary">@color/white</item>
+        <item name="android:textCursorDrawable">@color/black</item>
+
 
         </style>
 
     <style name="Theme.Travelmate" parent="Base.Theme.Travelmate">
-        <item name="colorPrimaryDark">#4093CE</item>
+        <item name="colorPrimaryDark">@color/purple</item>
         <item name="android:statusBarColor">@color/transparent</item>
 
     </style>
 
     <style name="SwitchCompatTheme" >
-        <item name="colorControlActivated">@color/blue</item>
+        <item name="colorControlActivated">@color/purple</item>
         <item name="colorAccent">@color/light_grey</item>
     </style>
     <style name="picker_theme" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorAccent">@color/blue</item>
-        <item name="colorContainer">@color/blue</item>
+        <item name="colorAccent">@color/purple</item>
+        <item name="colorPrimary">@color/purple</item> <!-- Changes header background -->
+        <item name="android:buttonBarPositiveButtonStyle">@style/TimePickerPositiveButton</item>
+    </style>
+
+    <style name="TimePickerPositiveButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/purple</item> <!-- Set OK button text color to black -->
+
 
     </style>
 </resources>

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -49,6 +50,8 @@ public class ChatFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 //        Toast.makeText(getActivity(), "Something went wrong0", Toast.LENGTH_SHORT).show();
+        requireActivity().getWindow().setStatusBarColor(ContextCompat.getColor(getContext(), R.color.purple));
+        requireActivity().getWindow().getDecorView().setSystemUiVisibility(0);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();

@@ -1,9 +1,11 @@
 package com.example.travelmate.usersection;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.travelmate.R;
 import com.example.travelmate.data.user_details;
@@ -13,8 +15,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Transaction;
-
-import java.util.Objects;
 
 public class ParentsSection extends AppCompatActivity {
 
@@ -27,6 +27,11 @@ public class ParentsSection extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityParentsSectionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.white));
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
 
         // Initialize Firestore and DocumentReference
         auth = FirebaseAuth.getInstance();

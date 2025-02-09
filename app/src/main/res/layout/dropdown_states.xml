@@ -1,12 +1,10 @@
-
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:padding="15dp"
-        android:textSize="20dp"
-        android:background="@color/white"
-
-        android:textColor="@color/black"
-        />
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="?android:attr/dropDownItemStyle"
+    android:padding="10dp"
+    android:textSize="16sp"
+    android:textColor="@color/black"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="start" />

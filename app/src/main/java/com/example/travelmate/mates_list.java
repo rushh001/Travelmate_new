@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.travelmate.data.ChatList;
+import com.example.travelmate.data.userMessage;
 import com.example.travelmate.data.user_details;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -104,6 +105,33 @@ public class mates_list extends RecyclerView.Adapter<mates_list.ViewHolder> {
                             .addOnFailureListener(e -> Toast.makeText(view.getContext(), "Failed to create chat list: " + e.getMessage(), Toast.LENGTH_SHORT).show());
                 }
             }).addOnFailureListener(e -> Toast.makeText(view.getContext(), "Failed to retrieve chat list: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+            // adding to message
+
+
+
+
+            DocumentReference userMessageRef = firestore.collection("messages")
+                    .document(currentUserId)
+                    .collection("user_chats")
+                    .document(clickedUserId);
+
+            // Check if the chat document exists
+            userMessageRef.get().addOnSuccessListener(documentSnapshot -> {
+                if (!documentSnapshot.exists()) {
+                    // Create new userMessage data with an initial message
+                    userMessage messageData = new userMessage();
+                    messageData.addMessage(currentUserId, "Welcome to the chat!");
+
+                    // Save userMessage data to Firestore
+                    userMessageRef.set(messageData)
+                            .addOnSuccessListener(aVoid -> Toast.makeText(view.getContext(), "Chat initialized!", Toast.LENGTH_SHORT).show())
+                            .addOnFailureListener(e -> Toast.makeText(view.getContext(), "Failed to initialize chat: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                }
+            }).addOnFailureListener(e -> Toast.makeText(view.getContext(), "Failed to retrieve chat data: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+
+
+
+
         });
     }
 

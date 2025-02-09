@@ -1,10 +1,5 @@
 package com.example.travelmate.usersection;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -13,9 +8,16 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
+
 import com.example.travelmate.R;
+import com.example.travelmate.databinding.ActivityMapsSosBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -24,7 +26,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.example.travelmate.databinding.ActivityMapsSosBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.io.IOException;
@@ -44,6 +45,9 @@ public class MapsActivitySos extends FragmentActivity implements OnMapReadyCallb
         binding = ActivityMapsSosBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.white));
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 

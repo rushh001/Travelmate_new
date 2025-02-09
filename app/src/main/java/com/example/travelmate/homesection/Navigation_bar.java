@@ -1,15 +1,15 @@
 package com.example.travelmate.homesection;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.os.Bundle;
-
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
-import com.example.travelmate.chatsection.ChatFragment;
 import com.example.travelmate.R;
+import com.example.travelmate.chatsection.ChatFragment;
 import com.example.travelmate.usersection.UserFragment;
 
 import kotlin.Unit;
@@ -22,6 +22,7 @@ public class Navigation_bar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //binding=ActivityMainBinding.inflate(getLayoutInflater());
+
         setContentView(R.layout.activity_navigation_bar);
 bottomNavigation= findViewById(R.id.bottom_navigation);
 replaceFragment(new SearchFragment());

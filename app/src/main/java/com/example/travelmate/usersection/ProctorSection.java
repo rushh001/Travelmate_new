@@ -1,8 +1,11 @@
 package com.example.travelmate.usersection;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.travelmate.R;
 import com.example.travelmate.data.user_details;
@@ -25,6 +28,10 @@ public class ProctorSection extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityProctorSectionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.white));
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         // Initialize Firestore and DocumentReference
         auth = FirebaseAuth.getInstance();

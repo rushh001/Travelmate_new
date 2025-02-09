@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.travelmate.R;
 import com.example.travelmate.data.ChatList;
+import com.example.travelmate.data.userMessage;
 import com.example.travelmate.data.user_details;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -93,7 +94,7 @@ if(auth.getCurrentUser()!=null){
             }
         }
     }
-//
+
 
 
     private void firebaseAuth(String idToken) {
@@ -173,14 +174,40 @@ if(auth.getCurrentUser()!=null){
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Intent intent = new Intent(SignUp.this, Navigation_bar.class);
-                    startActivity(intent);
-                    finish();
+                    userMessages(userId);
                 } else {
                     Toast.makeText(SignUp.this, "Failed to create chat list.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    private void userMessages(String userId) {
+        // Create an instance of the data class
+        userMessage messageData = new userMessage();
+        messageData.addMessage(userId, "Welcome to TravelMate! This is your personalized message.");
+
+        // Save the data to Firestore
+        database.collection("messages")
+                .document(userId) // Document with userId
+                .collection("user_chats") // Nested collection
+                .document(userId) // Document inside nested collection
+                .set(messageData) // Set the data
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            // Success feedback
+                            Intent intent = new Intent(SignUp.this, Navigation_bar.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        else {
+                            // Failure feedback
+                            Toast.makeText(SignUp.this, "Failed to initialize user messages.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
 
